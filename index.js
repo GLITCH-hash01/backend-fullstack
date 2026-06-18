@@ -25,13 +25,32 @@ app.get("/", (req, res) => {
 });
 app.use(express.json());
 app.use(Logger);
-app.use(async (req, res, next) => {
-  await connectDB();
-  next();
-});
+if (process.env.NODE_ENV === "production") {
+  app.use(async (req, res, next) => {
+    await connectDB();
+    next();
+  });
+}
 app.use("/auth", authRouter);
 app.use(verifyToken);
 app.use("/students", studentRouter);
+
+if (process.env.NODE_ENV === "development") {
+  console.log("Running in development mode");
+  const startServer = async () => {
+    try {
+      await connectDB();
+      app.listen(3000, () => {
+        console.log("Server is running on port 3000");
+      });
+    } catch (error) {
+      console.error("Failed to connect to the database", error);
+    }
+  };
+
+  startServer();
+}
+export default app;
 
 // connectDB();
 // app.listen(3000, () => {
@@ -50,5 +69,3 @@ app.use("/students", studentRouter);
 // };
 
 // startServer();
-
-export default app;
