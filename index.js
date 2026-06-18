@@ -30,15 +30,17 @@ app.use("/students", studentRouter);
 //   console.log("Server is running on port 3000");
 // });
 
-const startServer = async () => {
-  try {
-    await connectDB();
-    app.listen(3000, () => {
-      console.log("Server is running on port 3000");
-    });
-  } catch (error) {
-    console.error("Failed to connect to the database", error);
-  }
-};
+// const startServer = async () => {
+//   try {
+//     await connectDB();
+//     app.listen(3000, () => {
+//       console.log("Server is running on port 3000");
+//     });
+//   } catch (error) {
+//     console.error("Failed to connect to the database", error);
+//   }
+// };
 
-startServer();
+// startServer();
+
+export default app;
