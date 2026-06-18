@@ -12,7 +12,11 @@ dotenv.config({ path: "./.env" });
 const app = express();
 app.use(
   cors({
-    origin: ["https://frontend-fullstack-ashy.vercel.app", "http://localhost:5173"], // Adjust this to your frontend URL
+    origin: [
+      "https://frontend-fullstack-ashy.vercel.app",
+      "http://localhost:5173",
+    ], // Adjust this to your frontend URL
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   }),
 );
 
