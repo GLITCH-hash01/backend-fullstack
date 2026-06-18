@@ -27,6 +27,7 @@ router.post("/add", async (req, res) => {
       name,
       age,
       grade,
+      password: "password",
       email,
     });
 
