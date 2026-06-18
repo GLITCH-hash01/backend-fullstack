@@ -2,6 +2,7 @@ import { Router } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import Student from "../models/Student.js";
+import config from "../config/database.js";
 
 const router = Router();
 
@@ -64,6 +65,7 @@ router.post("/signup", async (req, res) => {
 // /auth/login
 router.post("/login", async (req, res) => {
   try {
+    await config.connectDB(); // Ensure the database is connected before proceeding
     const { email, password } = req.body;
 
     // Check if email and password are provided
