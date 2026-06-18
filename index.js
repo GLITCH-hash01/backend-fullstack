@@ -16,6 +16,9 @@ app.use(
   }),
 );
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the Student Management API");
+});
 app.use(express.json());
 app.use(Logger);
 app.use("/auth", authRouter);
