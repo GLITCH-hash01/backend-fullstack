@@ -65,7 +65,7 @@ router.post("/signup", async (req, res) => {
 // /auth/login
 router.post("/login", async (req, res) => {
   try {
-    await connectDB(); // Ensure the database is connected before proceeding
+
     const { email, password } = req.body;
 
     // Check if email and password are provided

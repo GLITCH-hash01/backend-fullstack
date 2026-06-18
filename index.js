@@ -25,6 +25,10 @@ app.get("/", (req, res) => {
 });
 app.use(express.json());
 app.use(Logger);
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
 app.use("/auth", authRouter);
 app.use(verifyToken);
 app.use("/students", studentRouter);
